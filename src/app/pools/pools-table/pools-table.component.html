@@ -1,0 +1,105 @@
+
+
+
+<div class="card">
+    <p-table #dt2 
+            [value]="products"
+            selectionMode="single" 
+            [scrollable]="true" 
+            scrollHeight="600px"
+            [dataKey]="'num'"
+            [tableStyle]="{ 'min-width': '50rem' }"
+            [expandedRowKeys]="expandedRows" (onRowExpand)="onRowExpand($event)" (onRowCollapse)="onRowCollapse($event)"
+            styleClass="p-datatable-sm p-datatable-striped"
+            [globalFilterFields]="['num', 'coin', 'algo', 'workerOnline', 'poolHash', 'netHash', 'sym']">
+            <ng-template pTemplate="caption">
+                <div class="flex">           
+                    <p-iconField iconPosition="left" class="m-auto">
+                        <p-inputIcon>
+                            <i class="pi pi-search"></i>
+                        </p-inputIcon>
+                        <input 
+                            pInputText 
+                            type="text"
+                            [(ngModel)]="searchValue"
+                            (input)="filterGlobal($event)" 
+                            placeholder="Search Coin, Algo, Symbol" />
+                        <p-button label="Clear" [outlined]="true" icon="pi pi-filter-slash" (click)="clear(dt2)" />
+                    </p-iconField>
+                </div>
+                <div class="card" class="flex justify-content-center flex-wrap mt-4 mb-4">
+                    <ng-container *ngFor="let option of checkboxOptions">
+                        <p-checkbox class="mr-2"
+                        [(ngModel)]="option.checked"
+                        (onChange)="filterTable()"
+                        [label]="option.label" 
+                        [name]="option.value" 
+                        [value]="option.value"
+                         />
+                    </ng-container>
+                  </div>
+            </ng-template>
+            
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="num" style="width:71px; ">#<p-sortIcon field="num" />
+                <th pSortableColumn="coin" style="width:200px">Coin<p-sortIcon field="coin" />
+                <th pSortableColumn="algo" style="width:100px">Algo<p-sortIcon field="algo" />
+                <th pSortableColumn="workerOnline"  style="width:100px">Active Workers<p-sortIcon field="workerOnline" />
+                <th pSortableColumn="poolHash"   style="width:100px">Pool Hashrate<p-sortIcon field="poolHash" />
+                <th pSortableColumn="netHash"  style="width:100px">Network Hashrate<p-sortIcon field="netHash" />
+                <th style="width:100px">Tutorial</th>
+                <th style="width:100px">Status</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product let-expanded="expanded">
+            <tr type="button" pRipple [pRowToggler]="product">
+                <!-- <td>
+                    <p-button type="button" pRipple [pRowToggler]="product" [text]="true" [rounded]="true" [plain]="true" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'" />
+                </td> -->
+                <td>
+                  <span class="flex align-items-center">
+                    <span>
+                        <p-button type="button"  [text]="true" [rounded]="true" [plain]="true" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'" />
+                    </span>
+                    <span>
+                        {{ product.num }}
+                    </span>
+                  </span>
+                </td>
+                <td>
+                    <span class="flex align-items-center">
+                    <span class="mr-3"> 
+                        <img src="{{product.coin | lowercase}}.png" width="32">
+                    </span>
+                    <span class="flex flex-column">
+                        <span class="font-bold">{{ product.sym }}</span>
+                        <span class="font-light">{{ product.coin }}</span>	
+                    </span>
+                </span>
+                </td>
+                <td>{{ product.algo }}</td>
+                <td style="width:100px">{{ product.workerOnline }}</td>
+                <td style="width:100px">{{ product.poolHash | shortNumber}}</td>
+                <td style="width:100px">{{ product.netHash | shortNumber }}</td>
+                <td>{{ product.coin }}</td>
+                <td>Ok</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="rowexpansion" let-product let-expanded="expanded">
+            <tr>
+                <td colspan="8" >
+                    <div class="grid surface-card shadow-2" style="border-radius: 10px;"><div class="col-12 md:col-3 px-5 py-5"><i class="pi pi-users text-4xl text-blue-600 mb-3"></i><div class="text-900 font-bold text-4xl mb-3 line-height-3">83M</div><p class="text-700 m-0">Nostrum laborum accusamus quia iste facere possimus.</p></div><div class="col-12 md:col-3 px-5 py-5"><i class="pi pi-chart-line text-4xl text-orange-500 mb-3"></i><div class="text-900 font-bold text-4xl mb-3 line-height-3">$256K</div><p class="text-700 m-0">Nostrum laborum accusamus quia iste facere possimus.</p></div><div class="col-12 md:col-3 px-5 py-5"><i class="pi pi-globe text-4xl text-cyan-600 mb-3"></i><div class="text-900 font-bold text-4xl mb-3 line-height-3">1,453</div><p class="text-700 m-0">Nostrum laborum accusamus quia iste facere possimus.</p></div><div class="col-12 md:col-3 px-5 py-5"><i class="pi pi-map text-4xl text-purple-500 mb-3"></i><div class="text-900 font-bold text-4xl mb-3 line-height-3">45 km</div><p class="text-700 m-0">Nostrum laborum accusamus quia iste facere possimus.</p></div></div>
+
+                <p-card *ngIf="expanded" >
+                    <div class="grid surface-card shadow-2" style="border-radius: 10px;"><div class="col-12 md:col-3 px-5 py-5"><i class="pi pi-users text-4xl text-blue-600 mb-3"></i><div class="text-900 font-bold text-4xl mb-3 line-height-3">83M</div><p class="text-700 m-0">Nostrum laborum accusamus quia iste facere possimus.</p></div><div class="col-12 md:col-3 px-5 py-5"><i class="pi pi-chart-line text-4xl text-orange-500 mb-3"></i><div class="text-900 font-bold text-4xl mb-3 line-height-3">$256K</div><p class="text-700 m-0">Nostrum laborum accusamus quia iste facere possimus.</p></div><div class="col-12 md:col-3 px-5 py-5"><i class="pi pi-globe text-4xl text-cyan-600 mb-3"></i><div class="text-900 font-bold text-4xl mb-3 line-height-3">1,453</div><p class="text-700 m-0">Nostrum laborum accusamus quia iste facere possimus.</p></div><div class="col-12 md:col-3 px-5 py-5"><i class="pi pi-map text-4xl text-purple-500 mb-3"></i><div class="text-900 font-bold text-4xl mb-3 line-height-3">45 km</div><p class="text-700 m-0">Nostrum laborum accusamus quia iste facere possimus.</p></div></div>
+                </p-card>
+              </td>
+              </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+
+
+
