@@ -12,36 +12,36 @@ import { TableRowCollapseEvent, TableRowExpandEvent } from 'primeng/table';
 export class BlockFoundComponent implements OnInit {
 
   products:  any[] = []; 
-
+ 
 
   constructor(private apiService: ApiService) {}
-
+ 
   ngOnInit() {
 
     let counter = 1; 
     this.apiService.getblockssData().subscribe(data => {
+      // console.log('API Response:', data); // Log the response to debug
+
       if (data) {
-        data.pools.forEach((item: any) => {
+        data.forEach((item: any) => {
           this.products.push({
           coin: item.poolId,
           reward: item.reward,
           status: item.status,
-          confirm: item.confirmationProgress,
-          poolHash: item.poolId,
-          netHash: item.poolId,
-          block: item.poolId,
-          diff: item.poolId,
-          sym: item.poolId,
+          confirm: item.confirmationProgress *100 ,
+          info: item.infoLink,
+          miner: item.miner,
+          time: item.created,
         });
       });
-      this.products.sort((a, b) => (a.coin > b.coin) ? 1 : -1);
+      // this.products.sort((a, b) => (a.coin > b.coin) ? 1 : -1);
 
       this.products.forEach((product, index) => {
         product.num = counter++;
       });
 
     }});
-    console.log('Products:', this.products);
+    // console.log('Products:', this.products);
 
   }
 }
@@ -51,12 +51,9 @@ export interface Objects {
   coin?: string;
   reward?: string;
   status?: string;
-  confirm?: string;
-  poolHash?: number;
-  netHash?: number;
-  block?: string;
-  diff?: string;
+  confirm?: number;
+  info?: string;
+  miner?: string;
+  time?: string;
   num?: string;
-  sym?:string;
 }
- 

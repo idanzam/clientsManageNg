@@ -1,0 +1,66 @@
+<div class="card" style="padding: 6%;">
+    <p>mining-dashboard works!</p>
+
+    <p-card header="Mining Dashboard" class="text-center" icon="pi pi-hammer">
+        <p-divider></p-divider>
+        <span class="flex flex-wrap gap-2">
+            <p-iconField iconPosition="left">
+                <p-inputIcon styleClass="pi pi-hammer" />
+                <input type="text" pInputText placeholder="Worker Address" style="width: 310px;" />
+            </p-iconField>    
+            <p-dropdown
+                [options]="selectedPool" 
+                [(ngModel)]="products" 
+                optionLabel="coin" 
+                [showClear]="true"
+                placeholder="Select a Pool"
+                >
+                <ng-template pTemplate="selectedItem" let-pool>
+                    <div class="flex align-items-center gap-2">
+                    <img 
+                        src="{{pool.coin | lowercase}}.png"
+                        [class]="'mr-2'"
+                        style="width: 20px" />
+                    <div class="mr-2">
+                        <span class="font-bold">{{ pool.coin }}</span>
+                        <span class="font-light text-sm ml-2">{{pool.algo}}</span>
+                    </div>
+                    </div>
+                </ng-template>
+                <ng-template let-pool pTemplate="item">
+                    <div class="flex align-items-center gap-2">
+                        <img 
+                            src="{{pool.coin | lowercase}}.png"
+                            
+                            style="width: 18px" />
+                        <div class="mr-2">
+                            <span class="font-bold">{{ pool.coin }}</span>
+                            <span class="font-light text-sm ml-2">{{pool.algo}}</span>
+                        </div>
+                    </div>
+                </ng-template>
+
+            </p-dropdown>
+                
+            <p-button label="Search" icon="pi pi-search" [rounded]="true" iconPos="right" />
+
+
+       
+        <!-- <span class="card flex justify-content-center">
+            <p-floatLabel>
+                <p-cascadeSelect
+                [(ngModel)]="selectedPool"
+                [options]="products"
+                optionLabel="coin"
+                optionGroupLabel="id"
+                [style]="{ minWidth: '14rem' }"
+                placeholder="Select a Pool">
+            </p-cascadeSelect>
+            </p-floatLabel>
+        
+           
+        </span> -->
+    </span>
+    </p-card>
+
+</div>

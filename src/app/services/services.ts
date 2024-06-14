@@ -10,8 +10,8 @@
 
         export class ApiService {
 
-        private poolApi = 'https://pool4ever.com/api/pools/';
-        private blockApi = 'https://pool4ever.com/api/blocks/';
+        private poolApi = 'https://exchange-infinity.com/api/pools/';
+        private blockApi = 'https://exchange-infinity.com/api/blocks/';
         private readonly themeLinkElementId = 'app-theme';
 
 

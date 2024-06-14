@@ -1,11 +1,15 @@
-<p>block-found works!</p>
  
 
 
 
 
 
-<div class="card">
+<div class="card mt-7">
+    <p-card class="text-center">
+        <h2 class="text center mt-0">Latest Blocks Found
+            <p-divider></p-divider>
+        </h2>
+    </p-card>
     <p-table [value]="products"
             selectionMode="single" 
             [scrollable]="true" 
@@ -15,14 +19,15 @@
             styleClass="p-datatable-sm p-datatable-striped">
         <ng-template pTemplate="header">
             <tr>
+               
                 <th pSortableColumn="num" style="width:71px; ">#<p-sortIcon field="num" />
                 <th pSortableColumn="coin" style="width:200px">Coin<p-sortIcon field="coin" />
                 <th pSortableColumn="reward" style="width:100px">Reward<p-sortIcon field="reward" />
                 <th pSortableColumn="status"  style="width:100px">Status<p-sortIcon field="status" />
                 <th pSortableColumn="confirm"   style="width:100px">Confirm<p-sortIcon field="confirm" />
-                <th pSortableColumn="netHash"  style="width:100px">Network Hashrate<p-sortIcon field="netHash" />
-                <th style="width:100px">Tutorial</th>
-                <th style="width:100px">Status</th>
+                <th pSortableColumn="info"  style="width:100px">Info<p-sortIcon field="info" />
+                <th style="width:100px">Miner</th>
+                <th style="width:100px">Time Found</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-product>
@@ -38,12 +43,14 @@
                     </span>
                 </span>
                 </td>
-                <td>{{ product.confirm }}</td>
+        
                 <td style="width:100px">{{ product.reward }}</td>
-                <td style="width:100px">{{ product.poolHash | shortNumber}}</td>
-                <td style="width:100px">{{ product.netHash | shortNumber }}</td>
-                <td>{{ product.coin }}</td>
-                <td>Ok</td>
+
+                <td>{{ product.status  }}</td>
+                <td style="width:100px">    <p-progressBar [value]="product.confirm" /></td>
+                <td style="width:100px">{{ product.info  }}</td>
+                <td>{{ product.miner }}</td>
+                <td>{{ product.time | date:"MMM dd, yyyy HH:mm "}}</td>
 
             </tr>
         </ng-template>

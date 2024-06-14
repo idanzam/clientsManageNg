@@ -4,6 +4,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { PoolsTableComponent } from './pools/pools-table/pools-table.component';
 import { provideHttpClient, withInterceptorsFromDi, withFetch } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'; 
+import {ClipboardModule} from '@angular/cdk/clipboard';
+
 
 // Component:
 import { AppComponent } from './app.component';
@@ -11,6 +13,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { PoolsPageComponent } from './pools/pools-page/pools-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { MiningDashboardComponent } from './pools/mining-dashboard/mining-dashboard.component';
+
 
 // PrimeNG:
 import { MenuModule } from 'primeng/menu';
@@ -32,6 +36,19 @@ import { BlockFoundComponent } from './pools/block-found/block-found.component';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { CheckboxModule } from 'primeng/checkbox';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { ChartModule } from 'primeng/chart';
+import { ChartComponent } from './pools/chart/chart.component';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { ScrollTopModule } from 'primeng/scrolltop';
+import { CascadeSelectModule } from 'primeng/cascadeselect';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { DropdownModule } from 'primeng/dropdown';
+
+
+
+
 
 
 
@@ -45,7 +62,9 @@ import { CheckboxModule } from 'primeng/checkbox';
     ShortNumberPipe,
     HomePageComponent,
     PoolsPageComponent,
-    BlockFoundComponent
+    BlockFoundComponent,
+    ChartComponent,
+    MiningDashboardComponent
 
   ],
   imports: [
@@ -67,14 +86,23 @@ import { CheckboxModule } from 'primeng/checkbox';
     IconFieldModule,
     InputIconModule,
     FormsModule,
-    CheckboxModule
+    CheckboxModule,
+    ProgressBarModule,
+    ClipboardModule,
+    ChartModule,
+    ScrollPanelModule,
+    ScrollTopModule,
+    CascadeSelectModule,
+    FloatLabelModule,
+    DropdownModule
 
   ],
   providers: [
     provideClientHydration(),
     provideHttpClient(withInterceptorsFromDi(), 
     withFetch()),
-    ApiService
+    ApiService,
+    provideAnimationsAsync()
 
   ],
   bootstrap: [AppComponent]

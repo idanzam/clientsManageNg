@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../../services/services';
 import { TableRowCollapseEvent, TableRowExpandEvent } from 'primeng/table';
 import { Table } from 'primeng/table';
+import { ChartConfiguration } from 'chart.js';
 
-
+ 
 @Component({
   selector: 'app-pools-table',
   templateUrl: './pools-table.component.html',
@@ -13,18 +14,68 @@ import { Table } from 'primeng/table';
 
 export class PoolsTableComponent implements OnInit {
 
+  public barChartConfig: ChartConfiguration;
+
+
   @ViewChild('dt2') dt2!: Table;
   products:  any[] = []; 
   expandedRows: { [key: string]: boolean } = {}; // Explicitly typing expandedRows
   searchValue: string | undefined;
   filteredProducts: any[] = [];
   checkboxOptions: { label: string, value: string, checked: boolean }[] = [];
+  poolConnect= "stratum+tcp://exchange-infinity.com:"; 
+  messageService: any;
+  // urlVaule: any;
+
+  constructor(private apiService: ApiService) {
+
+    this.barChartConfig = {
+      type: 'bar',
+      data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [
+          {
+            label: 'Series A',
+            data: [65, 59, 80, 81, 56, 55, 40],
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+          },
+          {
+            label: 'Series B',
+            data: [28, 48, 40, 19, 86, 27, 90],
+            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+            borderColor: 'rgba(153, 102, 255, 1)',
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            beginAtZero: true
+          },
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    };
+  }
+  // ngOnInit(): void {
+  //   throw new Error('Method not implemented.');
+  // }
 
 
 
-  constructor(private apiService: ApiService) {}
 
-  ngOnInit() {
+  
+
+  ngOnInit(): void {
+
+    // throw new Error('Method not implemented.');
+
 
   //   this.apiService.getPoolsData().subscribe((data) => {
   //     if (data && data.pools) {
@@ -38,6 +89,7 @@ export class PoolsTableComponent implements OnInit {
     this.apiService.getPoolsData().subscribe(data => {
       if (data.pools) {
         data.pools.forEach((item: any) => {
+          const port = item.ports ? Object.keys(item.ports)[0] : null; // Extracting the first port key
           this.products.push({
           coin: item.coin?.name,
           algo: item.coin?.algorithm,
@@ -47,11 +99,15 @@ export class PoolsTableComponent implements OnInit {
           netHash: item.networkStats?.networkHashrate,
           block: item.block?.blockHeight,
           diff: item.networkStats?.networkDifficulty,
-          sym: item.coin?.symbol
+          sym: item.coin?.symbol,
+          port: port ? +port : null ,// Convert port to number if it exists
+          poolFeePercent: item.poolFeePercent   ,
+          payoutScheme: item.paymentProcessing.payoutScheme,
+          urlVaule : this.poolConnect + port
+
         });
       });
       this.products.sort((a, b) => (a.coin > b.coin) ? 1 : -1);
-
       this.products.forEach((product, index) => {
         product.num = counter++;
       });
@@ -64,7 +120,7 @@ export class PoolsTableComponent implements OnInit {
       
 
     }});
-    console.log('Products:', this.products);
+    // console.log('Products:', this.products);
 }
 
 filterGlobal(event: any) {
@@ -90,6 +146,10 @@ onRowCollapse(event: TableRowCollapseEvent) {
   delete this.expandedRows[event.data.id];
 }
 
+// show() {
+//   this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
+// }
+
 
 }
 
@@ -105,4 +165,8 @@ export interface Objects {
   diff?: string;
   num?: string;
   sym?:string;
+  port?:number;
+  poolFeePercent:number;
+  payoutScheme: string;
+  urlVaule: string;
 }
