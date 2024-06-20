@@ -19,7 +19,7 @@ export class PoolsTableComponent implements OnInit {
 
   @ViewChild('dt2') dt2!: Table;
   products:  any[] = []; 
-  expandedRows: { [key: string]: boolean } = {}; // Explicitly typing expandedRows
+  expandedRows: { [key: string]: boolean } = {}; 
   searchValue: string | undefined;
   filteredProducts: any[] = [];
   checkboxOptions: { label: string, value: string, checked: boolean }[] = [];
@@ -63,28 +63,15 @@ export class PoolsTableComponent implements OnInit {
       }
     };
   }
-  // ngOnInit(): void {
-  //   throw new Error('Method not implemented.');
-  // }
-
-
-
-
-  
 
   ngOnInit(): void {
 
-    // throw new Error('Method not implemented.');
+    this.loadPoolsData();
 
+  }
 
-  //   this.apiService.getPoolsData().subscribe((data) => {
-  //     if (data && data.pools) {
-  //       this.products = data.pools;
-  //     } else {
-  //       console.error('Data is not an array:', data);
-  //     }
-  // });
-
+  loadPoolsData(): void {
+    this.products = [];
     let counter = 1; 
     this.apiService.getPoolsData().subscribe(data => {
       if (data.pools) {
@@ -100,6 +87,8 @@ export class PoolsTableComponent implements OnInit {
           block: item.block?.blockHeight,
           diff: item.networkStats?.networkDifficulty,
           sym: item.coin?.symbol,
+          Difficulty: item.networkStats?.networkDifficulty,
+          blockHeight: item.networkStats?.blockHeight,
           port: port ? +port : null ,// Convert port to number if it exists
           poolFeePercent: item.poolFeePercent   ,
           payoutScheme: item.paymentProcessing.payoutScheme,
@@ -121,6 +110,11 @@ export class PoolsTableComponent implements OnInit {
 
     }});
     // console.log('Products:', this.products);
+}
+
+refreshTable(): void {
+  this.loadPoolsData();
+  this.dt2.reset();
 }
 
 filterGlobal(event: any) {
@@ -146,10 +140,6 @@ onRowCollapse(event: TableRowCollapseEvent) {
   delete this.expandedRows[event.data.id];
 }
 
-// show() {
-//   this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
-// }
-
 
 }
 
@@ -169,4 +159,6 @@ export interface Objects {
   poolFeePercent:number;
   payoutScheme: string;
   urlVaule: string;
+  Difficulty: string;
+  blockHeight: string;
 }

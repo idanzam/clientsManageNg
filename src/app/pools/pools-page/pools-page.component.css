@@ -1,0 +1,17 @@
+
+
+/* img {
+
+    filter:  var(--primary-color)
+
+} */
+
+/* color: var(--primary-color) */
+
+/* :root {
+    --primary-color: 48% 79% 2476% 86deg 118% 119%;
+}
+
+img {
+    filter: invert(var(--primary-color)) sepia(var(--primary-color)) saturate(var(--primary-color)) hue-rotate(var(--primary-color)) brightness(var(--primary-color)) contrast(var(--primary-color));
+} */

@@ -1,0 +1,16 @@
+
+
+<!-- 
+  <a (click)="changeTheme('vela-blue')">Switch to Vela Blue</a>
+  <a (click)="changeTheme('saga-blue')">Switch to Saga Blue</a> -->
+
+  <p-toggleButton 
+  [(ngModel)]="checked" 
+  onLabel=""
+  offLabel="" 
+  onIcon="pi pi-sun" 
+  offIcon="pi pi-moon" 
+  styleClass=""
+  (onChange)="toggleTheme($event)"
+   class="br-5"
+   />

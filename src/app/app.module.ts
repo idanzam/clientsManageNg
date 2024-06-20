@@ -14,6 +14,14 @@ import { PoolsPageComponent } from './pools/pools-page/pools-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { MiningDashboardComponent } from './pools/mining-dashboard/mining-dashboard.component';
+import { ApiPageComponent } from './pools/api-page/api-page.component';
+import { CoinPageComponent } from './pools/coin-page/coin-page.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { RoadMapComponent } from './road-map/road-map.component';
+import { BlockFoundComponent } from './pools/block-found/block-found.component';
+import { ChartComponent } from './pools/chart/chart.component';
+
+
 
 
 // PrimeNG:
@@ -32,19 +40,24 @@ import { RatingModule } from 'primeng/rating';
 import { ShortNumberPipe } from './services/short-number.pipe';
 import { ApiService } from './services/services';
 import { DividerModule } from 'primeng/divider';
-import { BlockFoundComponent } from './pools/block-found/block-found.component';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ChartModule } from 'primeng/chart';
-import { ChartComponent } from './pools/chart/chart.component';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { CascadeSelectModule } from 'primeng/cascadeselect';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { DropdownModule } from 'primeng/dropdown';
+import { TimelineModule } from 'primeng/timeline';
+import { DayNightComponent } from './day-night/day-night.component';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+
+
+
 
 
 
@@ -64,7 +77,12 @@ import { DropdownModule } from 'primeng/dropdown';
     PoolsPageComponent,
     BlockFoundComponent,
     ChartComponent,
-    MiningDashboardComponent
+    MiningDashboardComponent,
+    ApiPageComponent,
+    CoinPageComponent,
+    PageNotFoundComponent,
+    RoadMapComponent,
+    DayNightComponent
 
   ],
   imports: [
@@ -94,7 +112,10 @@ import { DropdownModule } from 'primeng/dropdown';
     ScrollTopModule,
     CascadeSelectModule,
     FloatLabelModule,
-    DropdownModule
+    DropdownModule,
+    TimelineModule,
+    InputSwitchModule,
+    ToggleButtonModule
 
   ],
   providers: [

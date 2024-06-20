@@ -1,0 +1,29 @@
+
+
+<div class="card" style="padding: 6%;">
+    <p-card class="bg-primary-reverse">
+        <div class="text-center" style="background: radial-gradient(50% 109137.91% at 50% 50%, rgba(233, 30, 99, 0.1) 0%, rgba(254, 244, 247, 0) 100%);">
+            <span class="bg-white text-pink-500 font-bold text-2xl inline-block px-3">404</span>
+        </div>
+        <p-divider></p-divider>
+        <div class="mt-6 mb-5 font-bold text-6xl text-900 text-center">Page Not Found</div>
+        <p class="text-700 text-3xl mt-0 mb-6 text-center">Sorry, we couldn't find the page.</p>
+        <div class="text-center">
+            <p-button [rounded]="true" 
+                      [text]="true" 
+                      severity="secondary" 
+                      pripple="" 
+                      label="Go Back" 
+                      icon="pi pi-arrow-left"
+                      (click)="goBack()"
+                      class="">
+            </p-button>
+            <p-button [rounded]="true" 
+                      pripple="" 
+                      label="Home Page" 
+                      icon="pi pi-home" 
+                      [routerLink]="['/app-pools-page']">
+            </p-button>
+        </div>
+    </p-card>
+</div>

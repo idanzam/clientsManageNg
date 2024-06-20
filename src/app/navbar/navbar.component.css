@@ -1,0 +1,18 @@
+
+:host ::ng-deep .p-menubar {
+    
+    
+    height: 45px;
+
+}
+
+
+
+:host ::ng-deep .p-component {
+    font-size: 0.8rem;
+}
+
+
+:host ::ng-deep .pi {
+    font-size: 0.8rem;
+}

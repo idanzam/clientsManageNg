@@ -33,15 +33,27 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"              }
-      
+                "input": "public"              
+              },
+              {
+                "glob": "**/*",
+                "input": "public/themes/",
+                "output": "./assets/themes/"
+              }
             ],
             "styles": [
-              "src/custom-theme.scss",
               "src/styles.css",
-              "node_modules/primeng/resources/themes/vela-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
-              "node_modules/primeflex/primeflex.css"
+              "node_modules/primeflex/primeflex.css",
+              {
+                "input": "src/assets/themes/vela-blue/theme.css",
+                "inject": false
+              },
+              {
+                "input": "src/assets/themes/saga-blue/theme.css",
+                "inject": false
+              }
+
             ],
             "scripts": [],
             "server": "src/main.server.ts",

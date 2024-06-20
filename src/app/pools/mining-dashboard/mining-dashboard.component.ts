@@ -17,8 +17,11 @@ export class MiningDashboardComponent implements OnInit {
 
   products:  any[] = []; 
   selectedPool: any; // Track the selected pool
-
+  poolInput : any;
+  minerInput: string | undefined;
   workerAddress: string | undefined;
+
+
   coin: any[] | undefined
 
 
@@ -56,7 +59,6 @@ export class MiningDashboardComponent implements OnInit {
         });
       });
       this.selectedPool = this.products
-
       this.products.sort((a, b) => (a.coin > b.coin) ? 1 : -1);
       this.products.forEach((product, index) => {
         product.num = counter++;
@@ -67,8 +69,20 @@ export class MiningDashboardComponent implements OnInit {
       
 
     }});
-    console.log('select pool:', this.selectedPool);
+    console.log('select pool:', this.selectedPool);    
+
   }
+
+  search() {
+    if (this.poolInput && this.minerInput) {
+      const url = `https://pool4ever.com/api/pools/${this.poolInput.coin.toLowerCase()}/miners/${this.minerInput}`;
+      this.apiService.getPoolsDataInput(url).subscribe(data => {
+        // Handle the data as required
+        console.log('serach data', data);
+      });
+    }
+  }
+
 
   groupBy(array: any[], key: string) {
     return array.reduce((result, currentValue) => {
@@ -76,6 +90,10 @@ export class MiningDashboardComponent implements OnInit {
       return result;
     }, {});
   }
+
+
+
+
 
 
   }
@@ -97,6 +115,7 @@ export class MiningDashboardComponent implements OnInit {
     urlVaule: string;
     miner:string;
     hashrate:number;
+    
   }
 
  
