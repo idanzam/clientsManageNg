@@ -1,15 +1,15 @@
 <div class="card" style="padding: 6%;">
 
-    <p-card header="Mining Dashboard" class="text-center" icon="pi pi-hammer">
+    <p-card header="Mining Dashboard" class="text-center" icon="pi pi-hammer" [style]="{ 'border-radius': '30px' }">
         <p-divider></p-divider>
         <span class="flex flex-wrap gap-2">
             <p-iconField iconPosition="left">
                 <p-inputIcon styleClass="pi pi-hammer" />
-                <input type="text" pInputText placeholder="Worker Address" style="width: 310px;" />
+                <input type="text" pInputText placeholder="Worker Address" [(ngModel)]="workerAddress" style="width: 310px;" />
             </p-iconField>    
             <p-dropdown
                 [options]="selectedPool" 
-                [(ngModel)]="products" 
+                [(ngModel)]="poolInput"
                 optionLabel="coin" 
                 [showClear]="true"
                 placeholder="Select a Pool"
@@ -39,27 +39,74 @@
                     </div>
                 </ng-template>
 
-            </p-dropdown>
-                
+            </p-dropdown>     
             <p-button  (click)="search()" label="Search" icon="pi pi-search" [rounded]="true" iconPos="right" />
-
-
-       
-        <!-- <span class="card flex justify-content-center">
-            <p-floatLabel>
-                <p-cascadeSelect
-                [(ngModel)]="selectedPool"
-                [options]="products"
-                optionLabel="coin"
-                optionGroupLabel="id"
-                [style]="{ minWidth: '14rem' }"
-                placeholder="Select a Pool">
-            </p-cascadeSelect>
-            </p-floatLabel>
-        
-           
-        </span> -->
     </span>
-    </p-card>
 
+    <div class="grid" *ngIf="searchResult">
+        <div class="col-12 lg:col-4 p-3">
+            <div class="shadow-2 surface-card p-3" style="border-radius: 12px;">
+                <div class="flex align-items-center justify-content-between">
+                    <div>
+                        <span class="text-3xl text-900 font-bold">{{ searchResult.pendingShares | number  }}</span>
+                        <p class="mt-1 mb-0 text-600 text-xl">Pending Shares</p>
+                    </div>
+                    <div><img src="https://blocks.primeng.org/assets/images/blocks/illustration/stats-illustration-4.svg"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 lg:col-4 p-3">
+            <div class="shadow-2 surface-card p-3" style="border-radius: 12px;">
+                <div class="flex align-items-center justify-content-between"><div>
+                    <span class="text-3xl text-900 font-bold">{{ searchResult.pendingBalance }}</span>
+                    <p class="mt-1 mb-0 text-600 text-xl">Pending Balance</p>
+                </div>
+                <div><img src="https://blocks.primeng.org/assets/images/blocks/illustration/stats-illustration-4.svg"></div>
+                </div>
+             </div>
+        </div>
+        <div class="col-12 lg:col-4 p-3">
+            <div class="shadow-2 surface-card p-3" style="border-radius: 12px;">
+                <div class="flex align-items-center justify-content-between"><div>
+                    <span class="text-3xl text-900 font-bold">{{ searchResult.totalPaid | number }}</span>
+                    <p class="mt-1 mb-0 text-600 text-xl">Total Paid</p>
+                </div>
+                <div><img src="https://blocks.primeng.org/assets/images/blocks/illustration/stats-illustration-4.svg"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 lg:col-4 p-3">
+            <div class="shadow-2 surface-card p-3" style="border-radius: 12px;">
+                <div class="flex align-items-center justify-content-between"><div>
+                    <span class="text-3xl text-900 font-bold">{{ searchResult.minerEffort | percent }}</span>
+                    <p class="mt-1 mb-0 text-600 text-xl">Miner Effort</p>
+                </div>
+                <div><img src="https://blocks.primeng.org/assets/images/blocks/illustration/stats-illustration-4.svg"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 lg:col-4 p-3">
+            <div class="shadow-2 surface-card p-3" style="border-radius: 12px;">
+                <div class="flex align-items-center justify-content-between"><div>
+                    <span class="text-3xl text-900 font-bold">{{ searchResult.lastPayment | date:"MMM dd, yyyy HH:mm " }}</span>
+                    <a class="mt-1 mb-0 text-600 text-xl" [href]="searchResult.lastPaymentLink" target="_blank">Last Payment</a>
+                </div>
+                <div><img src="https://blocks.primeng.org/assets/images/blocks/illustration/stats-illustration-4.svg"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 lg:col-4 p-3">
+            <div class="shadow-2 surface-card p-3" style="border-radius: 12px;">
+                <div class="flex align-items-center justify-content-between"><div>
+                    <span class="text-3xl text-900 font-bold">{{ searchResult.todayPaid | number }}</span>
+                    <p class="mt-1 mb-0 text-600 text-xl">Today Paid</p>
+                </div>
+                <div><img src="https://blocks.primeng.org/assets/images/blocks/illustration/stats-illustration-4.svg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ 
+</p-card>
 </div>

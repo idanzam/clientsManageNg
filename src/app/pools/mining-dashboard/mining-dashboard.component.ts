@@ -13,6 +13,15 @@ import { Title } from '@angular/platform-browser';
   styleUrl: './mining-dashboard.component.css'
 })
 
+// api/pools/<poolId>/miners/<address>
+// api/pools/<poolId>/miners/<address>/blocks
+// api/pools/<poolId>/miners/<address>/payments
+// api/pools/<poolId>/miners/<address>/performance
+// api/pools/<poolId>/miners/<address>/settings
+// api/pools/<poolId>/miners/<address>/earnings/daily
+// api/pools/<poolId>/miners/<address>/balancechanges
+
+
 
 export class MiningDashboardComponent implements OnInit {
 
@@ -22,6 +31,8 @@ export class MiningDashboardComponent implements OnInit {
   poolInput : any;
   minerInput: string | undefined;
   workerAddress: string | undefined;
+  searchResult: any; // To hold the search result
+
 
 
   coin: any[] | undefined
@@ -55,8 +66,8 @@ export class MiningDashboardComponent implements OnInit {
           payoutScheme: item.paymentProcessing.payoutScheme,
           miner: item.miner,
           hashrate: item.hashrate,
-
-
+          workerAddress : this.workerAddress,
+          poolInput: item.coin?.name
 
         });
       });
@@ -76,11 +87,22 @@ export class MiningDashboardComponent implements OnInit {
   }
 
   search() {
-    if (this.poolInput && this.minerInput) {
-      const url = `https://pool4ever.com/api/pools/${this.poolInput.coin.toLowerCase()}/miners/${this.minerInput}`;
+    if (this.poolInput && this.workerAddress) {
+      const url = `https://pool4ever.com/api/pools/${this.poolInput.coin.toLowerCase()}/miners/${this.workerAddress}`;
       this.apiService.getPoolsDataInput(url).subscribe(data => {
         // Handle the data as required
         console.log('serach data', data);
+        this.searchResult = {
+          pendingShares: data.pendingShares,
+          pendingBalance: data.pendingBalance,
+          totalPaid: data.totalPaid,
+          todayPaid: data.todayPaid,
+          minerEffort: data.minerEffort,
+          lastPayment: data.lastPayment,
+          lastPaymentLink: data.lastPaymentLink,
+          performance: data.performance,
+          performanceSamples: data.performanceSamples
+        };
       });
     }
   }
@@ -117,6 +139,17 @@ export class MiningDashboardComponent implements OnInit {
     urlVaule: string;
     miner:string;
     hashrate:number;
+    workerAddress: string;
+    poolInput: string;
+    pendingShares: string
+    pendingBalance: string
+    totalPaid:string
+    todayPaid: string
+    minerEffort: string
+    lastPayment: string
+    lastPaymentLink: string
+    performance: string
+    performanceSamples: string
     
   }
 
