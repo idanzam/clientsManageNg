@@ -6,9 +6,13 @@
 
 <div class="card mt-7">
     <p-card class="text-center">
-        <h2 class="text center mt-0">Latest Blocks Found
-            <p-divider></p-divider>
+        <h2 class="text-primary text center mt-0 flex justify-content-center align-items-center ">
+            <i class="pi pi-history mr-2" style="font-size: 2rem"></i>
+            <span>Latest Blocks Found</span>
+            
         </h2>
+        <p-divider></p-divider>
+    
     </p-card>
     <p-table [value]="products"
             selectionMode="single" 
@@ -21,11 +25,12 @@
             <tr>
                
                 <th pSortableColumn="num" style="width:71px; ">#<p-sortIcon field="num" />
-                <th pSortableColumn="coin" style="width:200px">Coin<p-sortIcon field="coin" />
+                <th pSortableColumn="coin" style="width:150px">Coin<p-sortIcon field="coin" />
+                <th pSortableColumn="effort" style="width:100px">Effort<p-sortIcon field="effort" />
                 <th pSortableColumn="reward" style="width:100px">Reward<p-sortIcon field="reward" />
                 <th pSortableColumn="status"  style="width:100px">Status<p-sortIcon field="status" />
-                <th pSortableColumn="confirm"   style="width:100px">Confirm<p-sortIcon field="confirm" />
-                <th pSortableColumn="info"  style="width:100px">Info<p-sortIcon field="info" />
+                <th pSortableColumn="confirm" style="width:100px">Confirm<p-sortIcon field="confirm" />
+                <th pSortableColumn="info"  style="width:100px">Block TX Id<p-sortIcon field="info" />
                 <th style="width:100px">Miner</th>
                 <th style="width:100px">Time Found</th>
             </tr>
@@ -43,13 +48,25 @@
                     </span>
                 </span>
                 </td>
+                <td>{{ product.effort | percent  }}</td>
+
         
-                <td style="width:100px">{{ product.reward }}</td>
+                <td style="width:100px">{{ product.reward | number }}</td>
 
                 <td>{{ product.status  }}</td>
-                <td style="width:100px">    <p-progressBar [value]="product.confirm" /></td>
-                <td style="width:100px">{{ product.info  }}</td>
-                <td>{{ product.miner }}</td>
+                <td style="width:100px" >    
+                    <!-- <p-progressBar [value]="product.confirm" /> -->
+                    <!-- <p-meterGroup [value]="[product.pConfirm]" /> -->
+                    <progress value="{{product.pConfirm}}" min="0" max="100" style="width:100px"></progress>
+                    {{ product.confirm   }}
+                </td>
+                    
+                <td style="width:100px">
+                    <a (click)="openUrl(product.infoLink)" class="text-primary underline cursor-pointer	">
+                        {{ product.transactionConfirmationData | slice: 0 : 16 }}...
+                    </a>
+                </td>
+                <td>{{ product.miner | slice: 0 : 8 }}...</td>
                 <td>{{ product.time | date:"MMM dd, yyyy HH:mm "}}</td>
 
             </tr>

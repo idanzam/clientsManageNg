@@ -1,10 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pools-page',
   templateUrl: './pools-page.component.html',
   styleUrl: './pools-page.component.css'
 })
-export class PoolsPageComponent {
+export class PoolsPageComponent  implements OnInit {
+
+  title = "Exchange Infinity | Mining Pools Stat";
+
+  constructor(private titleService: Title) { }
+
+  ngOnInit(): void {
+    this.titleService.setTitle(this.title);
+  }
+
 
 }

@@ -3,6 +3,8 @@ import { ApiService } from '../../services/services';
 import { TableRowCollapseEvent, TableRowExpandEvent } from 'primeng/table';
 import { Table } from 'primeng/table';
 import { ChartConfiguration } from 'chart.js';
+import { Title } from '@angular/platform-browser';
+
 
 
 @Component({
@@ -14,7 +16,7 @@ import { ChartConfiguration } from 'chart.js';
 
 export class MiningDashboardComponent implements OnInit {
 
-
+  title = "Exchange Infinity | Mining DashBoard";
   products:  any[] = []; 
   selectedPool: any; // Track the selected pool
   poolInput : any;
@@ -24,15 +26,15 @@ export class MiningDashboardComponent implements OnInit {
 
   coin: any[] | undefined
 
+ 
 
-
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private titleService: Title) {}
 
 
 
   ngOnInit(): void {
 
-
+    this.titleService.setTitle(this.title);
     let counter = 1; 
     this.apiService.getPoolsData().subscribe(data => {
       if (data.pools) {

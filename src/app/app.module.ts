@@ -55,6 +55,8 @@ import { TimelineModule } from 'primeng/timeline';
 import { DayNightComponent } from './day-night/day-night.component';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { ToggleButtonModule } from 'primeng/togglebutton';
+import { MeterGroupModule } from 'primeng/metergroup';
+
 
 
 
@@ -115,7 +117,8 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
     DropdownModule,
     TimelineModule,
     InputSwitchModule,
-    ToggleButtonModule
+    ToggleButtonModule,
+    MeterGroupModule
 
   ],
   providers: [
