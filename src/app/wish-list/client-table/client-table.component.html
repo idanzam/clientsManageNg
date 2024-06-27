@@ -1,0 +1,30 @@
+<p>client-table works!</p>
+
+
+<table>
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Country</th>
+        <th>Erea Code</th>
+        <th>Phone</th>
+
+
+        <!-- Add more columns as per your submission data structure -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let submission of submissions">
+        <td>{{ submission.firstName }}</td>
+        <td>{{ submission.lastName }}</td>
+        <td>{{ submission.email }}</td>
+        <td>{{ submission.country }}</td>
+        <td>{{ submission.countryCode }}</td>
+        <td>{{ submission.phone }}</td>
+        <!-- Render more data columns as needed -->
+      </tr>
+    </tbody>
+  </table>
+  

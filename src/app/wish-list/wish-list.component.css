@@ -1,0 +1,13 @@
+
+
+:host ::ng-deep  .phone {
+
+    width: auto !important;
+
+}
+
+
+:host ::ng-deep .p-dropdown .p-dropdown-panel {
+    /* min-width: 100%; */
+    width: 290px;
+}

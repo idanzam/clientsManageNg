@@ -90,8 +90,28 @@ export class MiningDashboardComponent implements OnInit {
     if (this.poolInput && this.workerAddress) {
       const url = `https://pool4ever.com/api/pools/${this.poolInput.coin.toLowerCase()}/miners/${this.workerAddress}`;
       this.apiService.getPoolsDataInput(url).subscribe(data => {
-        // Handle the data as required
-        console.log('serach data', data);
+
+      // Handle the data as required
+      console.log('serach data', data);
+
+      // Extract the performance object
+      const performance = data.performance || {};
+
+      // Extract workers from performance object
+      const workers = performance.workers || {};
+
+      // Convert workers object to an array for easier iteration
+      const workerDetails = Object.keys(workers).map(workerName => {
+        const worker = workers[workerName];
+        return {
+          name: workerName === "" ? 'No Name' : workerName, // Use 'No Name' if workerName is empty
+          hashrate: worker.hashrate || 0,
+          sharesPerSecond: worker.sharesPerSecond || 0
+        };
+      });
+
+
+
         this.searchResult = {
           pendingShares: data.pendingShares,
           pendingBalance: data.pendingBalance,
@@ -101,7 +121,10 @@ export class MiningDashboardComponent implements OnInit {
           lastPayment: data.lastPayment,
           lastPaymentLink: data.lastPaymentLink,
           performance: data.performance,
-          performanceSamples: data.performanceSamples
+          performanceSamples: data.performanceSamples,
+          workers: workerDetails , // Assigning the mapped workerDetails array
+          hashrateWorker: workerDetails.length > 0 ? workerDetails[0].hashrate : 0,  // Example: Taking the hashrate of the first worker
+          sharesPerSecond: workerDetails.length > 0 ? workerDetails[0].sharesPerSecond : 0  // Example: Taking sharesPerSecond of the first worker
         };
       });
     }
@@ -114,10 +137,6 @@ export class MiningDashboardComponent implements OnInit {
       return result;
     }, {});
   }
-
-
-
-
 
 
   }
@@ -150,6 +169,9 @@ export class MiningDashboardComponent implements OnInit {
     lastPaymentLink: string
     performance: string
     performanceSamples: string
+    // workers: string
+    hashrateWorker: string
+    sharesPerSecond:string
     
   }
 

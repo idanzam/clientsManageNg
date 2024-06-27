@@ -1,7 +1,7 @@
 
 <div class="card" style="padding: 6%;">
-    <div class="surface-section px-4  md:px-6 lg:px-8">
-        <div class="text-700 text-center">
+    <div class="surface-card border-round-3xl px-4 md:px-6 lg:px-8">
+        <div class="text-700 text-center mb-6">
             <span class=""> 
                 <img src="logo.png" width="350" style="border-radius: 25px; margin-top: 5px;">
             </span>
@@ -9,12 +9,12 @@
             <div class="text-900 font-bold text-5xl mb-3">Trade & Mining Pools Cryptocurrency</div>
             <!-- <div class="text-700 text-2xl mb-5">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit numquam eligendi quos.</div> -->
             <span style="gap: 10px;">
-                <button pButton pRipple label="Trade Exchange - Comimg Soon" severity="secondary" icon="pi pi-discord" iconPos="right" class="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap m-2"></button>
+                <!-- <button pButton pRipple label="Trade Exchange - Comimg Soon" severity="secondary" icon="pi pi-discord" iconPos="right" class="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap m-2"></button> -->
                 <button pButton pRipple 
-                        label="Pools Mining - Join Now" 
+                        label="Pools Mining - Strat Now" 
                         icon="pi pi-arrow-right" 
                         iconPos="right" 
-                        class="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap m-2"
+                        class="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap m-2 mb-5"
                         [routerLink]="['/app-pools-page']">
                 </button>
             </span>
@@ -22,7 +22,46 @@
         </div>
 
     </div>
- 
+    <p-divider></p-divider>
+    <app-wish-list></app-wish-list>
+    <p-divider></p-divider>
+    <div class="surface-card px-4 py-8 md:px-6 lg:px-8 border-round-3xl	mt-5">
+        <div class="text-700 text-center">
+            <!-- <div class="text-blue-600 font-bold mb-3"><i class="pi pi-discord"></i>&nbsp;POWERED BY DISCORD</div> -->
+            <div class="text-900 font-bold text-5xl mb-3">Join Our Community</div>
+            <!-- <div class="text-700 text-2xl mb-5">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit numquam eligendi quos.</div> -->
+            <!-- <button pButton pRipple label="Via Discord" icon="pi pi-discord" 
+            class="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap" ></button> -->
+        <span class="flex justify-content-center gap-3">
+        <a href="https://discord.com/invite/vHdpPTzk3m" target="_blank">
+            <img src="img/discord.svg" class="w-4rem" >
+        </a>
+        <a href="https://t.me/ExchangeInfinityOfficial" target="_blank">
+            <img src="img/telegram.svg" class="w-4rem" >
+        </a>
+
+        </span>
+        <div class=" text-2xl mt-3 mb-3">Contact Us Via Email</div>
+        <a href="mailto:exchange.infinity.com@gmail.com" target="_blank">
+            <img src="img/email.svg" class="w-4rem" >
+        </a>
+        </div>
+    </div>
+<!-- 
+    <div class="surface-section flex flex-column lg:flex-row  py-8  align-items-center">
+        <div class="surface-card border-round-xl py-7 sm:px-7 md:px-6">
+            <img src="img/com.svg" class="h-15rem border-round hidden lg:block p-3">
+
+        <img src="img/com.svg" class="w-full sm:w-15rem border-round block lg:hidden mx-auto mb-5 p-3">
+        <div class="text-4xl font-semibold mb-3">Join Our Community</div>
+        <p class=" mt-0 mb-5 line-height-3">
+            Phasellus vestibulum lorem sed risus ultricies. Nulla pharetra diam sit amet nisl suscipit adipiscing bibendum est. Aenean euismod elementum nisi quis eleifend quam.</p>
+            <button type="button" pbutton="" pripple="" icon="pi pi-wallet" label="Start Free Trial" class="p-element p-ripple p-button-warning px-5 font-bold white-space-nowrap p-button p-component">
+                <span class="p-button-icon p-button-icon-left pi pi-wallet" aria-hidden="true"></span><span class="p-button-label">Start Free Trial</span>
+                <span class="p-ink"></span>
+            </button>
+        </div>
+    </div> -->
     <app-road-map></app-road-map>
 
 

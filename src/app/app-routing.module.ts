@@ -6,21 +6,20 @@ import { MiningDashboardComponent } from './pools/mining-dashboard/mining-dashbo
 import { ApiPageComponent } from './pools/api-page/api-page.component';
 import { CoinPageComponent } from './pools/coin-page/coin-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { WishListComponent } from './wish-list/wish-list.component';
+import { GhostComponent } from './ghost/ghost.component';
 
 
 const routes: Routes = [
 
   { path: '', component: HomePageComponent },  // Default route
+  { path: 'app-ghost', component: GhostComponent },
   { path: 'app-pools-page', component: PoolsPageComponent },
   { path: 'app-mining-dashboard', component: MiningDashboardComponent },
   { path: 'app-api-page', component: ApiPageComponent },
   { path: 'app-coin-page', component: CoinPageComponent },
+  { path: 'app-wish-list', component: WishListComponent },
   { path: '**', component: PageNotFoundComponent }
-
-
-
-
-
   
 
 ];

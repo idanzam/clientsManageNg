@@ -56,6 +56,19 @@ import { DayNightComponent } from './day-night/day-night.component';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { MeterGroupModule } from 'primeng/metergroup';
+import { PanelModule } from 'primeng/panel';
+import { WishListComponent } from './wish-list/wish-list.component';
+import { DialogModule } from 'primeng/dialog';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { InputMaskModule } from 'primeng/inputmask';
+import { ClientTableComponent } from './wish-list/client-table/client-table.component';
+import { GhostComponent } from './ghost/ghost.component';
+
+
+
+
+
 
 
 
@@ -84,7 +97,11 @@ import { MeterGroupModule } from 'primeng/metergroup';
     CoinPageComponent,
     PageNotFoundComponent,
     RoadMapComponent,
-    DayNightComponent
+    DayNightComponent,
+    WishListComponent,
+    ClientTableComponent,
+    GhostComponent
+    
 
   ],
   imports: [
@@ -118,7 +135,13 @@ import { MeterGroupModule } from 'primeng/metergroup';
     TimelineModule,
     InputSwitchModule,
     ToggleButtonModule,
-    MeterGroupModule
+    MeterGroupModule,
+    PanelModule,
+    DialogModule,
+    InputGroupModule,
+    InputGroupAddonModule,
+    InputMaskModule,
+    
 
   ],
   providers: [

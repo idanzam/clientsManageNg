@@ -1,6 +1,12 @@
 <div class="card" style="padding: 6%;">
 
-    <p-card header="Mining Dashboard" class="text-center" icon="pi pi-hammer" [style]="{ 'border-radius': '30px' }">
+    <p-card class="text-center" [style]="{ 'border-radius': '30px' }">
+        <h1 class="text center mt-0 text-primary flex justify-content-center align-items-center">
+            <span class="" class="mr-3"> 
+                <img class="text-primary" src="img/dash.svg" width="70">
+            </span>
+            <span>Mining Dashboard</span>
+        </h1>
         <p-divider></p-divider>
         <span class="flex flex-wrap gap-2">
             <p-iconField iconPosition="left">
@@ -47,11 +53,11 @@
         <div class="col-12 lg:col-4 p-3">
             <div class="shadow-2 surface-card p-3" style="border-radius: 12px;">
                 <div class="flex align-items-center justify-content-between">
-                    <div>
+                    <div class="flex flex-column">
                         <span class="text-3xl text-900 font-bold">{{ searchResult.pendingShares | number  }}</span>
                         <p class="mt-1 mb-0 text-600 text-xl">Pending Shares</p>
                     </div>
-                    <div><img src="https://blocks.primeng.org/assets/images/blocks/illustration/stats-illustration-4.svg"></div>
+                    <div><img src="img/share.svg" style="width: 75px;"></div>
                 </div>
             </div>
         </div>
@@ -61,52 +67,89 @@
                     <span class="text-3xl text-900 font-bold">{{ searchResult.pendingBalance }}</span>
                     <p class="mt-1 mb-0 text-600 text-xl">Pending Balance</p>
                 </div>
-                <div><img src="https://blocks.primeng.org/assets/images/blocks/illustration/stats-illustration-4.svg"></div>
-                </div>
+                <div><img src="img/pend.svg" style="width: 75px;"></div>
+            </div>
              </div>
         </div>
         <div class="col-12 lg:col-4 p-3">
             <div class="shadow-2 surface-card p-3" style="border-radius: 12px;">
-                <div class="flex align-items-center justify-content-between"><div>
+                <div class="flex align-items-center justify-content-between">
+                    <div class="flex flex-column">
                     <span class="text-3xl text-900 font-bold">{{ searchResult.totalPaid | number }}</span>
                     <p class="mt-1 mb-0 text-600 text-xl">Total Paid</p>
                 </div>
-                <div><img src="https://blocks.primeng.org/assets/images/blocks/illustration/stats-illustration-4.svg"></div>
+                <div><img src="img/paid.svg" style="width: 75px;"></div>
                 </div>
             </div>
         </div>
         <div class="col-12 lg:col-4 p-3">
             <div class="shadow-2 surface-card p-3" style="border-radius: 12px;">
-                <div class="flex align-items-center justify-content-between"><div>
+                <div class="flex align-items-center justify-content-between">
+                    <div class="flex flex-column">
+
                     <span class="text-3xl text-900 font-bold">{{ searchResult.minerEffort | percent }}</span>
                     <p class="mt-1 mb-0 text-600 text-xl">Miner Effort</p>
                 </div>
-                <div><img src="https://blocks.primeng.org/assets/images/blocks/illustration/stats-illustration-4.svg"></div>
+                <div><img src="img/effort.svg" style="width: 75px;"></div>
                 </div>
             </div>
         </div>
         <div class="col-12 lg:col-4 p-3">
             <div class="shadow-2 surface-card p-3" style="border-radius: 12px;">
-                <div class="flex align-items-center justify-content-between"><div>
+                <div class="flex align-items-center justify-content-between">
+                    <div class="flex flex-column">
                     <span class="text-3xl text-900 font-bold">{{ searchResult.lastPayment | date:"MMM dd, yyyy HH:mm " }}</span>
-                    <a class="mt-1 mb-0 text-600 text-xl" [href]="searchResult.lastPaymentLink" target="_blank">Last Payment</a>
+                    <span><a class="mt-1 mb-0 text-600 text-xl" [href]="searchResult.lastPaymentLink" target="_blank">
+                    Last Payment</a></span>
                 </div>
-                <div><img src="https://blocks.primeng.org/assets/images/blocks/illustration/stats-illustration-4.svg"></div>
+                <div><img src="img/last.svg" style="width: 75px;"></div>
                 </div>
             </div>
         </div>
         <div class="col-12 lg:col-4 p-3">
             <div class="shadow-2 surface-card p-3" style="border-radius: 12px;">
-                <div class="flex align-items-center justify-content-between"><div>
-                    <span class="text-3xl text-900 font-bold">{{ searchResult.todayPaid | number }}</span>
+                <div class="flex align-items-center justify-content-between">
+                    <div class="flex flex-column">
+                        <span class="text-3xl text-900 font-bold">{{ searchResult.todayPaid | number }}</span>
                     <p class="mt-1 mb-0 text-600 text-xl">Today Paid</p>
                 </div>
-                <div><img src="https://blocks.primeng.org/assets/images/blocks/illustration/stats-illustration-4.svg"></div>
+                <div><img src="img/total.svg" style="width: 75px;"></div>
                 </div>
             </div>
         </div>
     </div>
+    <p class="mt-3 mb-3 text-600 text-xl"></p>
 
+    <div class="card flex justify-content-center" *ngIf="searchResult">
+
+        <p-panel header="Miners Online Stat:" class="w-full" >
+            <h2>Woker Address:<span class="text-primary"> {{workerAddress}}</span></h2>
+
+            <h3>Total Workers Online:<span class="text-green-500" > {{ searchResult.workers.length }}</span></h3>
+
+        <div class="text-900 w-full">
+            <div class="grid mt-0 mr-0">
+                <div class="col-12 md:col-6" *ngFor="let worker of searchResult.workers; let i = index">
+                    <div class="p-3 border-1 surface-border border-round surface-card " >
+                    <div class="text-900 mb-2">
+                        <span class="font-medium">Miner Name: {{ worker.name }}</span>
+                    </div>
+                    <!-- <div class="text-700">Ultimate UI Component Suite for JavaServer Faces</div> -->
+                    <p>Hashrate: {{ worker.hashrate | shortNumber }}</p>
+                    <p>Shares per Second: {{ worker.sharesPerSecond | number }}</p>
+                    </div>
+                </div>
+            <!-- <div class="col-12 md:col-6"><div class="p-3 border-1 surface-border border-round surface-card"><div class="text-900 mb-2"><i class="pi pi-github mr-2"></i><span class="font-medium">PrimeNG</span></div><div class="text-700">The Most Complete Angular UI Component Library</div></div></div><div class="col-12 md:col-6"><div class="p-3 border-1 surface-border border-round surface-card"><div class="text-900 mb-2"><i class="pi pi-github mr-2"></i><span class="font-medium">PrimeReact</span></div><div class="text-700">Advanced UI Components for ReactJS</div></div></div><div class="col-12 md:col-6"><div class="p-3 border-1 surface-border border-round surface-card"><div class="text-900 mb-2"><i class="pi pi-github mr-2"></i><span class="font-medium">PrimeVue</span></div><div class="text-700">The Most Powerful Vue UI Component Library</div></div></div> -->
+        </div>
+        </div>
+
+        </p-panel>
+       
+    </div>
+    <p-panel header="Block Found:" class="w-full mt-4" >At Development
+    </p-panel>
+    <p-panel header="Payments:" class="w-full mt-4" >At Development
+    </p-panel>
  
 </p-card>
 </div>
