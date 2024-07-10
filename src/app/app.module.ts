@@ -13,13 +13,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { PoolsPageComponent } from './pools/pools-page/pools-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
-import { MiningDashboardComponent } from './pools/mining-dashboard/mining-dashboard.component';
 import { ApiPageComponent } from './pools/api-page/api-page.component';
-import { CoinPageComponent } from './pools/coin-page/coin-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { RoadMapComponent } from './road-map/road-map.component';
-import { BlockFoundComponent } from './pools/block-found/block-found.component';
-import { ChartComponent } from './pools/chart/chart.component';
 
 
 
@@ -63,20 +58,6 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputMaskModule } from 'primeng/inputmask';
 import { ClientTableComponent } from './wish-list/client-table/client-table.component';
-import { GhostComponent } from './ghost/ghost.component';
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -90,17 +71,12 @@ import { GhostComponent } from './ghost/ghost.component';
     ShortNumberPipe,
     HomePageComponent,
     PoolsPageComponent,
-    BlockFoundComponent,
-    ChartComponent,
-    MiningDashboardComponent,
     ApiPageComponent,
-    CoinPageComponent,
     PageNotFoundComponent,
-    RoadMapComponent,
     DayNightComponent,
     WishListComponent,
     ClientTableComponent,
-    GhostComponent
+    
     
 
   ],

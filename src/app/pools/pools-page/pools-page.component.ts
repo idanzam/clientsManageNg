@@ -8,7 +8,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class PoolsPageComponent  implements OnInit {
 
-  title = "Exchange Infinity | Mining Pools Stat";
+  title = "Clients Infinity | Clients Table Info";
 
   constructor(private titleService: Title) { }
 

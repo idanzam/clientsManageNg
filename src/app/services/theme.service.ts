@@ -17,7 +17,7 @@ export class ThemeService {
         if (themeLink) {
             // themeLink.href = theme + '.css';
             themeLink.href = `assets/themes/${theme}/theme.css`;
-
+  
         }
 
     }

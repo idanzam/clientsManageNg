@@ -1,9 +1,7 @@
 
-
-
 <div class="card">
     <p-table #dt2 
-            [value]="products"
+            [value]="clients"
             selectionMode="single" 
             [scrollable]="true" 
             scrollHeight="600px"
@@ -11,145 +9,165 @@
             [tableStyle]="{ 'min-width': '60rem' }"
             [expandedRowKeys]="expandedRows" (onRowExpand)="onRowExpand($event)" (onRowCollapse)="onRowCollapse($event)"
             styleClass="p-datatable-sm p-datatable-striped"
-            [globalFilterFields]="['num', 'coin', 'algo', 'workerOnline', 'poolHash', 'netHash', 'sym']">
+            [globalFilterFields]="['id', 'firstname', 'lastname', 'phone', 'address', 'email', 'gender']"
+            editMode="row">
             <ng-template pTemplate="caption">
-                <div class="flex flex-wrap justify-content-center gap-2">           
-                    <p-iconField iconPosition="left" class="m-auto">
-                        <p-inputIcon>
-                            <i class="pi pi-search"></i>
-                        </p-inputIcon>
-                        <input 
-                            pInputText 
-                            type="text"
-                            [(ngModel)]="searchValue"
-                            (input)="filterGlobal($event)" 
-                            placeholder="Search Coin, Algo, Symbol"
-                            style="border-radius: 25px;" />
+                <div class="flex flex-wrap justify-content-center gap-2">
+                        <p-iconField iconPosition="left" class="m-auto" >
+                            <p-inputIcon>
+                                <i class="pi pi-search"></i>
+                            </p-inputIcon>
+                            <input 
+                                pInputText 
+                                type="text"
+                                [(ngModel)]="searchValue"
+                                (input)="filterGlobal($event)" 
+                                placeholder="Search F.name/L.name/Phone"
+                                style="border-radius: 25px; width:230px" />
+                        </p-iconField>
                         <p-button label="Clear" [outlined]="true"  [rounded]="true" icon="pi pi-filter-slash" (click)="clear(dt2)" />
-                    </p-iconField>
-                    <p-button  label="Mining Dashboard" icon="pi pi-hammer" [rounded]="true" routerLink="/app-mining-dashboard"></p-button>
-
-                </div>
-                <div class="card" class="flex justify-content-center flex-wrap mt-4 mb-4 gap-2">
-                    <ng-container *ngFor="let option of checkboxOptions">
-                        <p-checkbox class="mr-2"
-                        [(ngModel)]="option.checked"
-                        (onChange)="filterTable()"
-                        [label]="option.label" 
-                        [name]="option.value" 
-                        [value]="option.value"
-                         />
-                    </ng-container>
                     <p-button label="Refresh"  [outlined]="true"  [rounded]="true" icon="pi pi-refresh"  (click)="refreshTable()"/>
+                    <app-wish-list></app-wish-list>
                 </div>
             </ng-template>
             
         <ng-template pTemplate="header">
             <tr >
-                <th pSortableColumn="num" style="width:71px; ">#<p-sortIcon field="num" />
-                <th pSortableColumn="coin" style="width:200px"  >Coin<p-sortIcon field="coin" />
-                <th pSortableColumn="algo" style="width:125px">Algo<p-sortIcon field="algo" />
-                <th pSortableColumn="workerOnline" style="width:70px" class="">
+                <th pSortableColumn="id" style="width:71px; ">#<p-sortIcon field="id" />
+                <th pSortableColumn="firstname" style="width:100px">First Name<p-sortIcon field="firstname" />
+                <th pSortableColumn="lastname" style="width:105px">Last Name<p-sortIcon field="lastname" />
+                <th pSortableColumn="phone" style="width:70px" class="">
                     <span class="flex align-items-center">
-                        <span>Active Workers</span>
-                        <p-sortIcon field="workerOnline" />
+                        <span>Phone</span>
+                        <p-sortIcon field="phone" />
                     </span>
                 </th>
-                <th pSortableColumn="Difficulty"  style="width:100px">
+                <th pSortableColumn="address"  style="width:150px">
                     <span class="flex align-items-center">
-                        <span>Difficulty</span>
-                        <p-sortIcon field="Difficulty" />
+                        <span>Address</span>
+                        <p-sortIcon field="address" />
                     </span>
                 </th>
-                <th pSortableColumn="blockHeight" style="width:100px">
+                <th pSortableColumn="email" style="width:100px">
                     <span class="flex align-items-center">
-                        <span>Block Height</span>
-                        <p-sortIcon field="blockHeight" />
+                        <span>Email</span>
+                        <p-sortIcon field="email" />
                     </span>
                 </th>
-                <th pSortableColumn="poolHash" style="width:70px">
+                <th pSortableColumn="gender" style="width:70px">
                     <span class="flex align-items-center">
-                        <span>Pool Hashrate</span>
-                        <p-sortIcon field="poolHash" />
+                        <span>Gender</span>
+                        <p-sortIcon field="gender" />
                     </span>
                 </th>
-                <th pSortableColumn="netHash"  style="width:100px">
+                <th style="width:70px">
                     <span class="flex align-items-center">
-                        <span>Network Hashrate</span>
-                        <p-sortIcon field="netHash" />
+                        <span>Action</span>
                     </span>
                 </th>
-                <th style="width:100px">Tutorial</th>
-                <th tyle="width:50px">Status</th>
             </tr>   
         </ng-template>
-        <ng-template pTemplate="body" let-product let-expanded="expanded">
-            <tr type="button" pRipple [pRowToggler]="product">
+        <ng-template pTemplate="body" let-clients let-expanded="expanded" let-editing="editing" let-ri="rowIndex">
+            <tr type="button" pRipple [pRowToggler]="clients" [pEditableRow]="clients">
+                <td>{{ clients.id }}</td>
                 <td>
                   <span class="flex align-items-center">
                     <span>
-                        <p-button type="button"  [text]="true" [rounded]="true" [plain]="true" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'" />
+                        <p-button type="button"  [text]="true" [rounded]="true" [plain]="true"  />
                     </span>
                     <span>
-                        {{ product.num }}
+                        {{ clients.firstname }}
                     </span>
                   </span>
                 </td>
                 <td style="width:130px">
                     <span class="flex align-items-center">
-                    <span class="mr-3"> 
-                        <img src="{{product.coin | lowercase}}.png" width="32">
-                    </span>
                     <span class="flex flex-column">
-                        <span class="font-bold">{{ product.sym }}</span>
-                        <span class="font-light" >{{ product.coin }}</span>	
+                        <span class="font-bold">{{ clients.lastname }}</span>
                     </span>
                 </span>
                 </td>
-                <td>{{ product.algo }}</td>
-                <td style="width:50px">{{ product.workerOnline }}</td>
-                <td style="width:50px">{{ product.Difficulty | shortNumber}}</td>
-                <td style="width:50px">{{ product.blockHeight}}</td>
-                <td style="width:50px">{{ product.poolHash | shortNumber}}</td>
-                <td style="width:100px">{{ product.netHash | shortNumber }}</td>
-                <td>Tutorial</td>
-                <td tyle="width:50px">Ok</td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="rowexpansion" let-product let-expanded="expanded">
-            <tr>
-                <td colspan="10" >
-                    <span class="flex justify-content-evenly gap-2">
-                        <p-card class="w-5">
-                                <span>Network Hashrate</span>
-                                <app-chart [chartConfig]="barChartConfig"></app-chart>
-                        </p-card>
-                        <p-card class="w-5">
-                                <span class="flex flex-column gap-2">
-                                    <span>Mining URL Connection:</span>
-                                    <span class="flex align-items-center gap-2">
-                                    <span class="text-blue-500">{{poolConnect}}{{product.port}}</span>
-                                    <p-button pRipple [rounded]="true" icon="pi pi-copy" label="Copy Url" size="small" [cdkCopyToClipboard]="product.urlVaule"></p-button>
-                                    </span>
-                                    <span>Worker: WalletAddress</span>
-                                    <span>Mining Fee: {{product.poolFeePercent}}%</span>
-                                    <span>Settlement Method: {{product.payoutScheme}}</span>
-                                </span>
-                                <span class="flex justify-content-center mt-4">
-                                    <p-button pRipple  [outlined]="true" 
-                                              [rounded]="true" 
-                                              icon="pi pi-copy" 
-                                              label="Pool Stat Page" 
-                                              size="small"
-                                              [routerLink]="['app-coin-page',product.coinPage]"
-                                              ></p-button>
-                                </span>
-                        </p-card>
-                    </span>
+                <td>{{ clients.phone }}</td>
+                <td style="width:50px">{{ clients.address }}</td>
+                <td style="width:50px">{{ clients.email}}</td>
+                <td style="width:50px">{{ clients.gender}}</td>
+                <td style="width:50px">
+                    <span class="flex gap-2">
+                    <p-button label="delete" severity="danger" [rounded]="true" size="small" (click)="deleteClient(clients.id)"></p-button>
+                    <p-button label="edit" [rounded]="true" severity="warning" size="small" (click)="editClient(clients)"></p-button>      
+                </span>
                 </td>
             </tr>
         </ng-template>
     </p-table>
+
+    <p-dialog header="Edit Client" [(visible)]="visible" [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '25rem' }">
+        <ng-template pTemplate="header">
+            <div class="inline-flex align-items-center justify-content-center gap-2">
+                <p-avatar image="logo.jpg" shape="circle"></p-avatar>
+                <p class="font-bold white-space-nowrap">Edit Client</p>
+            </div>
+        </ng-template>
+        <span class="p-text-secondary block mb-5">Please update the client details</span>
+        <div class="flex align-items-center gap-3 mb-2">
+            <p-inputGroup>
+                <p-inputGroupAddon>
+                    <i class="pi pi-user"></i>
+                </p-inputGroupAddon>
+                <input pInputText placeholder="First Name" [(ngModel)]="selectedClient.firstname">
+            </p-inputGroup>
+        </div>
+        <div class="flex align-items-center gap-3 mb-5">
+            <p-inputGroup>
+                <p-inputGroupAddon>
+                    <i class="pi pi-user"></i>
+                </p-inputGroupAddon>
+                <input pInputText placeholder="Last Name" [(ngModel)]="selectedClient.lastname">
+            </p-inputGroup>
+        </div>
+        <div class="flex align-items-center gap-3 mb-3">
+            <p-inputGroup>
+                <p-inputGroupAddon>
+                    <i class="pi pi-envelope"></i>
+                </p-inputGroupAddon>
+                <input pInputText placeholder="Email" [(ngModel)]="selectedClient.email">
+            </p-inputGroup>
+        </div>
+        <div class="flex align-items-center gap-3 mb-3">
+            <p-inputGroup>
+                <p-inputGroupAddon>
+                    <i class="pi pi-home"></i>
+                </p-inputGroupAddon>
+                <input pInputText placeholder="Address" [(ngModel)]="selectedClient.address">
+            </p-inputGroup>
+        </div>
+        <div class="flex align-items-center gap-3 mb-3">
+            <p-inputGroup>
+                <p-inputGroupAddon>
+                    <i class="pi pi-phone"></i>
+                </p-inputGroupAddon>
+                <input pInputText placeholder="Phone" [(ngModel)]="selectedClient.phone">
+            </p-inputGroup>
+        </div>
+        <div class="flex align-items-center gap-3 mb-3">
+            <p-inputGroup>
+                <p-inputGroupAddon>
+                    <i class="pi pi-flag"></i>
+                </p-inputGroupAddon>
+                <input pInputText placeholder="Gender" [(ngModel)]="selectedClient.gender">
+            </p-inputGroup>
+        </div>
+        <ng-template pTemplate="footer">
+            <p-button label="Apply Changes" [rounded]="true" icon="pi pi-check" (click)="applyChanges()"></p-button>
+        </ng-template>
+    </p-dialog>
+
+
+
+
+
+
+    
 </div>
 
 

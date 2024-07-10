@@ -10,7 +10,7 @@ import { Title } from '@angular/platform-browser';
 export class HomePageComponent  implements OnInit {
 
   
-  title = "Exchange Infinity | Trade & Mining Pools Cryptocurrency";
+  title = "Clients Infinity | Manage Your Clients Wiser";
 
   constructor(private titleService: Title) { }
 

@@ -1,7 +1,7 @@
         import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
         import { isPlatformBrowser } from '@angular/common';
-        import { HttpClient } from '@angular/common/http';
-        import { Observable } from 'rxjs';
+        import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+        import { Observable, catchError, throwError } from 'rxjs';
         
 
         @Injectable({
@@ -10,38 +10,52 @@
 
         export class ApiService {
 
-        private apiUrl = 'https://exchange-infinity.com/wish-api/submit'; 
-        private submissionsUrl = 'https://exchange-infinity.com/wish-api/submissions';
+  
         private poolApi = 'https://exchange-infinity.com/api/pools/';
         private blockApi = 'https://exchange-infinity.com/api/blocks/';
+
+        private clientsApi ='http://213.137.74.31:3311/api/clients';
+
+
         private readonly themeLinkElementId = 'app-theme';
-
-
         constructor(private http: HttpClient,
                             @Inject(PLATFORM_ID) private platformId: Object) {}
         
-        getAllSubmissions(): Observable<any[]> {
-            return this.http.get<any[]>(this.submissionsUrl);
-        }
+                            getClientsData(): Observable<any> {
+                              return this.http.get<any>(this.clientsApi).pipe(
+                                catchError(this.handleError)
+                              );
+                            }
+                           
 
-        submitForm(formData: any): Observable<any> {
-            return this.http.post<any>(this.apiUrl, formData);
-        }
-          
-        getPoolsData(): Observable<any> {
-            return this.http.get<any>(this.poolApi);
-        }
+                            addClient(clientData: any): Observable<any> {
+                              return this.http.post<any>(this.clientsApi, clientData).pipe(
+                                catchError(this.handleError)
+                              );
+                            }
 
-        getblockssData(): Observable<any> {
-          return this.http.get<any>(this.blockApi);
-        }
+                            deleteClient(id: number): Observable<any> {
+                              return this.http.delete<any>(`${this.clientsApi}/${id}`).pipe(
+                                catchError(this.handleError)
+                              );
+                            }
 
-        getPoolsDataInput(url: string = 'https://exchange-infinity.com/api/pools/'): Observable<any> {
-        return this.http.get<any>(url);
-        }
-
-        getCoinPage(coinSelect: any): Observable<any> {
-          return this.http.get<any>(this.poolApi);
-      }
+                            updateClient(id: number, clientData: any): Observable<any> {
+                              return this.http.put<any>(`${this.clientsApi}/${id}`, clientData).pipe(
+                                catchError(this.handleError)
+                              );
+                            }
+                          
+                            private handleError(error: HttpErrorResponse): Observable<never> {
+                              if (error.error instanceof ErrorEvent) {
+                                // Client-side/network error
+                                console.error('An error occurred:', error.error.message);
+                              } else {
+                                // Backend error
+                                console.error(`Backend returned code ${error.status}, body was: ${error.error}`);
+                              }
+                              return throwError('Something bad happened; please try again later.');
+                            }
+      
         
       }

@@ -1,25 +1,11 @@
 
 
 
-
-<p-card styleClass="surface-ground shadow-none border-round-3xl	" >
-     <!-- style="border-radius: 2rem; background: radial-gradient(100% 1126.49% at 100% 0%, rgb(125 143 155) 0%, rgba(33, 33, 33, 0) 100%), #21212169;"> -->
-     <div class="p-3">
-        <div class="flex align-items-center justify-content-around flex-wrap text-medium text-4xl mt-3 mb-2 gap-3">
-            <span class="flex flex-column	 gap-3">
-            <span class="text-primary		 font-bold">Be One Of The Firsts</span>
-            <span>Join Our Exchange Waitlist Today!</span>
-            </span>
-            <img src="https://blocks.primeng.org/assets/images/blocks/cta/cta-browser.png" alt="Image" class="" style="height: 180px;">
-
-        </div>
         <span class="flex justify-content-center">
 
-        <p-button (click)="showDialog()" icon="pi pi-user-plus" iconPos="right" label="Join Now"
+        <p-button (click)="showDialog()" icon="pi pi-user-plus" iconPos="right" label="Add New Client"
                    styleClass="bg-primary font-bold"
-                   [rounded]="true"
-        >
-            
+                   [rounded]="true">     
                 <span class="p-ink"></span>
         </p-button>
         </span>
@@ -36,11 +22,11 @@
                         image="logo.jpg"
                         shape="circle" />
                     <p class="font-bold white-space-nowrap">
-                        Exchange Infinity - Waitlist
+                        Add New Client
                     </p>
                 </div>
             </ng-template>
-            <span class="p-text-secondary block mb-5">Update your information.</span>
+            <span class="p-text-secondary block mb-5">Please Fill all section</span>
             <div class="flex align-items-center gap-3 mb-2">
                 <p-inputGroup>
                     <p-inputGroupAddon>
@@ -63,6 +49,14 @@
                         <i class="pi pi-envelope"></i>
                     </p-inputGroupAddon>
                     <input pInputText placeholder="Email" [(ngModel)]="email" />
+                </p-inputGroup>
+            </div>
+            <div class="flex align-items-center gap-3 mb-3" >
+                <p-inputGroup>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-home"></i>
+                    </p-inputGroupAddon>
+                    <input pInputText placeholder="Address" [(ngModel)]="address" />
                 </p-inputGroup>
             </div>
         <p-inputGroup>
@@ -111,7 +105,6 @@
                 </p-dropdown>
         </p-inputGroup>
           <div class="p-field mt-3">
-            <!-- <label for="phone">Phone</label> -->
             <div class="p-inputgroup">
               <span class="p-inputgroup-addon" *ngIf="selectedCountry">
                 <img 
@@ -127,6 +120,14 @@
               </p-inputGroup>
             </div>
           </div>
+          <div class="flex align-items-center gap-3 mb-3" >
+            <p-inputGroup>
+                <p-inputGroupAddon>
+                    <i class="pi pi-home"></i>
+                </p-inputGroupAddon>
+                <input pInputText placeholder="Gender" [(ngModel)]="gender" />
+            </p-inputGroup>
+        </div>
             <ng-template pTemplate="footer">
                 
             </ng-template>
@@ -145,6 +146,3 @@
                 </p-dialog>
     </p-dialog>
 
-    </div>
-
-</p-card>

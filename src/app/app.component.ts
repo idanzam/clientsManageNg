@@ -8,7 +8,7 @@ import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from '
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Exchange-Infinity';
+  title = 'Clients-Infinity';
 
 
   constructor(private router: Router) {

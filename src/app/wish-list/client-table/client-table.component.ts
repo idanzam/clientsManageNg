@@ -14,18 +14,18 @@ export class ClientTableComponent  implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.fetchSubmissions();
+    // this.fetchSubmissions();
   }
 
-  fetchSubmissions() {
-    this.apiService.getAllSubmissions().subscribe(
-      (data) => {
-        this.submissions = data;
-      },
-      (error) => {
-        console.error('Error fetching submissions:', error);
-      }
-    );
-  }
+  // fetchSubmissions() {
+  //   this.apiService.getAllSubmissions().subscribe(
+  //     (data) => {
+  //       this.submissions = data;
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching submissions:', error);
+  //     }
+  //   );
+  // }
 
 }

@@ -6,14 +6,6 @@ import { ApiService } from '../services/services';
 
 
 
-// interface Country  {
-//   name: string;
-//   alpha2Code: string;
-//   callingCodes: string[];
-// }
-
-
-
 @Component({
   selector: 'app-wish-list',
   templateUrl: './wish-list.component.html',
@@ -26,10 +18,10 @@ export class WishListComponent implements OnInit {
   email: string | undefined;
   country: string | undefined;
   phone: string | undefined;
-  countryCode: string | undefined; // Define countryCode variable
+  countryCode: string | undefined; 
+  gender:any;
+  address: any;
   
-
-
   countries: Country[] = [];
   selectedCountry: Country | undefined;
   filterValue: string = '';
@@ -74,23 +66,21 @@ export class WishListComponent implements OnInit {
       email: this.email,
       country: this.selectedCountry ? this.selectedCountry.name : '',
       phone: this.phone,
-      countryCode: this.selectedCountry?.callingCodes[0] || '' // Ensure countryCode is included or set to ''
+      countryCode: this.selectedCountry?.callingCodes[0] || '' ,
+      gender: this.gender,
+      address:this.address
+
 
     };
 
-    this.apiService.submitForm(formData).subscribe(
-      response => {
-        console.log('Form submitted successfully', response);
-        this.showDialog2();
-        setTimeout(() => {
-          this.visible = false;
-          this.visible2 = false;
-        }, 2000);
-      },
-      error => {
-        console.error('Error submitting form', error);
-      }
-    );
+    this.apiService.addClient(formData).subscribe(response => {
+      console.log('Client added successfully', response);
+      this.showDialog2();
+    }, error => {
+      console.error('There was an error adding the client!', error);
+    });
+
+ 
   }
 
 }

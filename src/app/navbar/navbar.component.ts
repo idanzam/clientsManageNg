@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-    // items: MenuItem[] = [];
 
   items: MenuItem[] | undefined;
 
@@ -22,31 +21,22 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
       this.items = [
+            {
+                label: 'home',
+                icon: 'pi pi-home',
+                routerLink: '/',
+            },
+      
           {
-              label: 'Buy Cypto',
-              icon: 'pi pi-shop',
-              router: '/'          
-          },
-          {
-              label: 'Trade',
-              icon: 'pi pi-chart-bar',
-              badge: 'Comming Soon!'
-          },
-          {
-              label: 'Mining Pools',
+              label: 'Clients',
               icon: 'pi pi-table',
               routerLink: '/app-pools-page',
               items: [
                   {
-                      label: 'Pools Review',
+                      label: 'Clients Table Review',
                       icon: 'pi pi-bolt',
                       routerLink: '/app-pools-page',
 
-                  },
-                  {
-                      label: 'Worker Dashboard',
-                      icon: 'pi pi-server',
-                      routerLink: '/app-mining-dashboard',
                   },
                   {
                       label: 'API REST',
@@ -55,11 +45,7 @@ export class NavbarComponent implements OnInit {
                   },
               ]
           },
-          {
-              label: 'Help',
-              icon: 'pi pi-question-circle',
-            //   badge: 'Comming Soon'
-          }
+       
       ];
   }
 
