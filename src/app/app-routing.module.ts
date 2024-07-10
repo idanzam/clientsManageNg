@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PoolsPageComponent } from './pools/pools-page/pools-page.component';
-import { HomePageComponent } from './home-page/home-page.component';
+import { HomePageComponent } from './Components/home-page/home-page.component';
 import { ApiPageComponent } from './pools/api-page/api-page.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
 import { WishListComponent } from './wish-list/wish-list.component';
 
 

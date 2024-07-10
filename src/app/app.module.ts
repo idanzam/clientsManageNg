@@ -9,12 +9,12 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
 
 // Component:
 import { AppComponent } from './app.component';
-import { HomePageComponent } from './home-page/home-page.component';
+import { HomePageComponent } from './Components/home-page/home-page.component';
 import { PoolsPageComponent } from './pools/pools-page/pools-page.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { FooterComponent } from './footer/footer.component';
+import { NavbarComponent } from './Components/navbar/navbar.component';
+import { FooterComponent } from './Components/footer/footer.component';
 import { ApiPageComponent } from './pools/api-page/api-page.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
 
 
 
@@ -47,7 +47,7 @@ import { CascadeSelectModule } from 'primeng/cascadeselect';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { DropdownModule } from 'primeng/dropdown';
 import { TimelineModule } from 'primeng/timeline';
-import { DayNightComponent } from './day-night/day-night.component';
+import { DayNightComponent } from './Components/day-night/day-night.component';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { MeterGroupModule } from 'primeng/metergroup';
