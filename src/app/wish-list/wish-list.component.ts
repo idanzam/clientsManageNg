@@ -79,6 +79,11 @@ export class WishListComponent implements OnInit {
     }, error => {
       console.error('There was an error adding the client!', error);
     });
+    this.visible2 = false;
+    this.visible = false;
+
+
+
 
  
   }
