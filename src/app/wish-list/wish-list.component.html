@@ -2,12 +2,11 @@
 
 
         <span class="flex justify-content-center">
-
-        <p-button (click)="showDialog()" icon="pi pi-user-plus" iconPos="right" label="Add New Client"
-                   styleClass="bg-primary font-bold"
-                   [rounded]="true">     
-                <span class="p-ink"></span>
-        </p-button>
+            <p-button (click)="showDialog()" icon="pi pi-user-plus" iconPos="right" label="Add New Client"
+                    styleClass="bg-primary font-bold"
+                    [rounded]="true">     
+                    <span class="p-ink"></span>
+            </p-button>
         </span>
         <p-dialog 
             header="Header" 
@@ -59,11 +58,11 @@
                     <input pInputText placeholder="Address" [(ngModel)]="address" />
                 </p-inputGroup>
             </div>
-        <p-inputGroup>
-        <p-inputGroupAddon>
-            <i class="pi pi-flag"></i>
-        </p-inputGroupAddon>
-          <p-dropdown
+            <p-inputGroup>
+            <p-inputGroupAddon>
+                <i class="pi pi-flag"></i>
+            </p-inputGroupAddon>
+            <p-dropdown
                 [options]="countries" 
                 [(ngModel)]="selectedCountry" 
                 optionLabel="name" 
@@ -102,34 +101,33 @@
                     <div>{{ country.name }}</div>
                     </div>
                 </ng-template>
-                </p-dropdown>
-        </p-inputGroup>
-          <div class="p-field mt-3">
-            <div class="p-inputgroup">
-              <span class="p-inputgroup-addon" *ngIf="selectedCountry">
-                <img 
-                [src]="selectedCountry.flag"
-                style="width: 18px" />
-                +{{ selectedCountry.callingCodes[0] }}
-              </span>
-              <p-inputGroup>
-                <p-inputGroupAddon>
-                    <i class="pi pi-mobile"></i>
-                </p-inputGroupAddon>
-              <input id="phone" type="text" pInputText [(ngModel)]="phone" placeholder="Phone (xxx)-xxxxxxx" >
-              </p-inputGroup>
-            </div>
-          </div>
-          <div class="flex align-items-center gap-3 mb-3" >
-            <p-inputGroup>
-                <p-inputGroupAddon>
-                    <i class="pi pi-home"></i>
-                </p-inputGroupAddon>
-                <input pInputText placeholder="Gender" [(ngModel)]="gender" />
+            </p-dropdown>
             </p-inputGroup>
-        </div>
-            <ng-template pTemplate="footer">
-                
+            <div class="p-field mt-3">
+                <div class="p-inputgroup">
+                <span class="p-inputgroup-addon" *ngIf="selectedCountry">
+                    <img 
+                    [src]="selectedCountry.flag"
+                    style="width: 18px" />
+                    +{{ selectedCountry.callingCodes[0] }}
+                </span>
+                <p-inputGroup>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-mobile"></i>
+                    </p-inputGroupAddon>
+                <input id="phone" type="text" pInputText [(ngModel)]="phone" placeholder="Phone (xxx)-xxxxxxx" >
+                </p-inputGroup>
+                </div>
+            </div>
+            <div class="flex align-items-center gap-3 mb-3" >
+                <p-inputGroup>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-home"></i>
+                    </p-inputGroupAddon>
+                    <input pInputText placeholder="Gender" [(ngModel)]="gender" />
+                </p-inputGroup>
+            </div>
+            <ng-template pTemplate="footer"> 
             </ng-template>
             <p-button (click)="showDialog2()" (click)="submitForm()"
                     styleClass="mt-5 mb-5"
@@ -144,5 +142,5 @@
                     </p>
                     <p class="p-text-secondary mb-5 text-center">Your details sent.</p>
                 </p-dialog>
-    </p-dialog>
+        </p-dialog>
 

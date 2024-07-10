@@ -15,9 +15,9 @@ export class DayNightComponent {
 
   toggleTheme(event: any) {
     if (event.checked) {
-      this.changeTheme('saga-blue'); // Example theme change on toggle on
+      this.changeTheme('saga-blue'); 
     } else {
-      this.changeTheme('vela-blue'); // Example theme change on toggle off
+      this.changeTheme('vela-blue'); 
     }
   }
 

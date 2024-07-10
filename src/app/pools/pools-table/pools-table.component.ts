@@ -80,8 +80,7 @@ export class PoolsTableComponent implements OnInit {
   }
 
   editClient(client: any): void {
-    this.selectedClient = { ...client }; // Create a copy of the client object
-    // this.editDialogVisible = true; // Show the dialog
+    this.selectedClient = { ...client }; 
     this.visible = true;
 
   }
@@ -91,8 +90,8 @@ export class PoolsTableComponent implements OnInit {
     this.apiService.updateClient(this.selectedClient.id, this.selectedClient).subscribe(
       () => {
         console.log(`Client with id ${this.selectedClient.id} updated successfully`);
-        this.visible = false; // Hide the dialog
-        this.refreshTable(); // Refresh the table
+        this.visible = false; 
+        this.refreshTable(); 
       },
       error => {
         console.error('There was an error updating the client!', error);
@@ -126,9 +125,7 @@ export class PoolsTableComponent implements OnInit {
   showDialog2() {
     this.visible2 = true;
   }
-  // showDialog() {
-  //   this.visible = true;
-  // }
+
   
 }
 

@@ -9,7 +9,7 @@ import { WishListComponent } from './wish-list/wish-list.component';
 
 const routes: Routes = [
 
-  { path: '', component: HomePageComponent },  // Default route
+  { path: '', component: HomePageComponent },  
   { path: 'app-pools-page', component: PoolsPageComponent },
   { path: 'app-api-page', component: ApiPageComponent },
   { path: 'app-wish-list', component: WishListComponent },

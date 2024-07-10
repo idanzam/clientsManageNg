@@ -9,15 +9,14 @@ export interface Country {
   alpha2Code: string;
   callingCodes: string[];
   flag: string;
-  code: string; // This will be the alpha2Code, used in the dropdown
-  // countryCode:string
+  code: string; 
   }
 
 @Injectable({
   providedIn: 'root'
 })
 export class CountryService {
-  private countriesUrl = 'https://restcountries.com/v2/all'; // URL to REST API
+  private countriesUrl = 'https://restcountries.com/v2/all'; 
 
   constructor(private http: HttpClient) {}
 
@@ -29,7 +28,6 @@ export class CountryService {
         callingCodes: country.callingCodes,
         flag: country.flag,
         code: country.alpha2Code,
-        // countryCode: country.country.code// Use alpha2Code as code
       })))
     );
   }
