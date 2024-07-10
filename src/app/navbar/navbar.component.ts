@@ -1,6 +1,7 @@
 import { Component,OnInit  } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { ApiService } from '../services/services';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -15,7 +16,7 @@ export class NavbarComponent implements OnInit {
   items: MenuItem[] | undefined;
 
 
-  constructor(private themeService: ApiService) {}
+  constructor(private router: Router) {}
 
  
 
@@ -24,7 +25,7 @@ export class NavbarComponent implements OnInit {
           {
               label: 'Buy Cypto',
               icon: 'pi pi-shop',
-              routerLink: '/'          
+              router: '/'          
           },
           {
               label: 'Trade',

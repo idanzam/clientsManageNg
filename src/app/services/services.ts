@@ -39,5 +39,9 @@
         getPoolsDataInput(url: string = 'https://exchange-infinity.com/api/pools/'): Observable<any> {
         return this.http.get<any>(url);
         }
+
+        getCoinPage(coinSelect: any): Observable<any> {
+          return this.http.get<any>(this.poolApi);
+      }
         
       }

@@ -92,7 +92,8 @@ export class PoolsTableComponent implements OnInit {
           port: port ? +port : null ,// Convert port to number if it exists
           poolFeePercent: item.poolFeePercent   ,
           payoutScheme: item.paymentProcessing.payoutScheme,
-          urlVaule : this.poolConnect + port
+          urlVaule : this.poolConnect + port,
+          coinPage : item.coin?.name.toLowerCase()
 
         });
       });
@@ -161,4 +162,5 @@ export interface Objects {
   urlVaule: string;
   Difficulty: string;
   blockHeight: string;
+  coinPage:string;
 }

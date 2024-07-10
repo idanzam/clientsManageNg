@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'app-pools-page', component: PoolsPageComponent },
   { path: 'app-mining-dashboard', component: MiningDashboardComponent },
   { path: 'app-api-page', component: ApiPageComponent },
-  { path: 'app-coin-page', component: CoinPageComponent },
+  { path: 'app-coin-page/:id', component: CoinPageComponent },
   { path: 'app-wish-list', component: WishListComponent },
   { path: '**', component: PageNotFoundComponent }
   
